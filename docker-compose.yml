@@ -1,19 +1,37 @@
 version: "3"
-
 services:
   backend:
     build:
       context: ./backend
-      dockerfile: ./backend/backend.dockerfile
+      dockerfile: ./backend.dockerfile
     restart: always
+    environment:
+      URL: postgres://postgres:root@db:5432/postgres
     ports:
-      - "8080:8080"
+      - "8081:8080"
+    volumes:
+      - ./backend:/app
+    working_dir: /app
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: postgres
+    ports:
+      - "5435:5432" # Port di host:port di container
 
   frontend:
     build:
       context: ./frontend
-      dockerfile: ./frontend/frontend.dockerfile
+      dockerfile: ./frontend.dockerfile
     ports:
       - "3001:3000"
+    volumes:
+      - ./frontend:/app
+    working_dir: /app
     depends_on:
       - backend
