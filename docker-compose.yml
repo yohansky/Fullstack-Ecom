@@ -4,7 +4,6 @@ services:
     build:
       context: ./backend
       dockerfile: ./backend.dockerfile
-    restart: always
     environment:
       URL: postgres://postgres:root@db:5432/postgres
     ports:

@@ -10,4 +10,6 @@ RUN npm install
 
 RUN npm run build
 
+# tidak memakai expose karena sudah ada ports di docker-compose.yml
+
 CMD ["npm", "run", "start"]

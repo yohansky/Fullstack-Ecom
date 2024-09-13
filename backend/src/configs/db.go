@@ -2,6 +2,7 @@ package configs
 
 import (
 	"be-ecom/src/models"
+	"fmt"
 	"os"
 
 	"gorm.io/driver/postgres"
@@ -18,6 +19,8 @@ func Connect() {
 	// DB, err = gorm.Open(postgres.Open("postgres://postgres:root@db:5432/postgres?sslmode=disable"), &gorm.Config{})
 	if err != nil {
 		panic("Failed connect to Databas")
+	} else {
+		fmt.Printf("Connect to database")
 	}
 }
 

@@ -9,5 +9,8 @@ RUN go mod download
 
 COPY . .
 
+# tidak memakai expose karena sudah ada ports di docker-compose.yml
+
+# ini juga bisa ditaruh di docker-cpmpose dengan "commands: air"
 CMD ["air","-c",".air.toml"]
 # CMD ["air"]
